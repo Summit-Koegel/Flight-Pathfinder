@@ -2,7 +2,7 @@
  * Classes that implement this interface will run a command loop that
  * can be used to map out flight routes
  */
-public interface IFlightMapperFrontend {
+public interface IFlightRouteFrontend {
 
     // constructor takes IFlightMapperBackend as argument and reads input
     // from System.in
