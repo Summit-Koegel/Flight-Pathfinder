@@ -1,0 +1,66 @@
+Script started on 2022-04-27 23:02:23+00:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="93" LINES="52"]
+]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ git status
+On branch FrontendDeveloper
+Your branch is up to date with 'origin/FrontendDeveloper'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mlog[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ git log -1
+[?1h=[33mcommit 230c07ec897cc6731b6fe8f7be915846955d341e[m[33m ([m[1;36mHEAD -> [m[1;32mFrontendDeveloper[m[33m, [m[1;31morigin/FrontendDe[m [33m[m[33m[m[1;36m[m[1;32m[m[33m[m[1;31mveloper[m[33m)[m[m
+Author: Corey Johnsen <cjjohnsen@wisc.edu>[m
+Date:   Wed Apr 27 23:01:30 2022 +0000[m
+[m
+    Fixed error in IAirport.java and updated makefile[m
+[K[?1l>]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ make clean
+rm *.class
+rm: cannot remove '*.class': No such file or directory
+make: *** [Makefile:22: clean] Error 1
+]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ ls
+AirportFD.java               GraphADT.java             IFlightRouteFrontend.java
+App.java                     IAirport.java             Makefile
+FlightRouteBackendFD.java    IAirportAE.java           TextUITester.java
+FlightRouteFrontend.java     IFlightLoader.java        [0m[01;31mjunit5.jar[0m
+FrontendDeveloperTests.java  IFlightRouteBackend.java  log
+]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ make runTests
+javac IAirport.java
+javac AirportFD.java
+javac IFlightRouteBackend.java
+javac FlightRouteBackendFD.java
+javac FlightRouteFrontend.java
+javac TextUITester.java
+javac -cp .:junit5.jar FrontendDeveloperTests.java -Xlint
+java -jar junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mFrontendDeveloperTests[0m [32m✔[0m
+[36m│     ├─[0m [34mtestCommandMenu()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestConnection()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestRemoveConnection()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestShortestPath()[0m [32m✔[0m
+[36m│     └─[0m [34mtestAddConnection()[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 293 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
+
+]0;cjjohnsen@cs400: ~/Project3_DQ_redcjjohnsen@cs400:~/Project3_DQ_red$ exit
+exit
+
+Script done on 2022-04-27 23:03:16+00:00 [COMMAND_EXIT_CODE="0"]
