@@ -1,0 +1,62 @@
+Script started on 2022-04-28 20:28:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="196" LINES="50"]
+]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ git stt[Katus
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mlog[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ git log -1
+[?1h=[33mcommit f033fc0222c993a55a5db624960f8ef0932ebbe2[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Author: Aaryush <agupta276@wisc.edu>[m
+Date:   Thu Apr 28 20:27:46 2022 +0000[m
+[m
+    Committed all placeholders and test[m
+[K[?1l>]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ mk[Kake clean
+rm *.class
+rm: cannot remove '*.class': No such file or directory
+make: *** [Makefile:2: clean] Error 1
+]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ ls
+AirportAEPL.java  BackendDeveloperTests.java  FlightLoaderPL.java      GraphADT.java  IAirportAE.java     IFlightRouteBackend.java   Makefile    log
+AirportPL.java    CS400Graph.java             FlightRouteBackend.java  IAirport.java  IFlightLoader.java  IFlightRouteFrontend.java  [0m[01;31mjunit5.jar[0m
+]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ make runBackendTests
+javac AirportPL.java
+javac AirportAEPL.java
+javac CS400Graph.java
+javac FlightLoaderPL.java
+javac FlightRouteBackend.java
+javac -cp .:junit5.jar BackendDeveloperTests.java -Xlint
+java -jar junit5.jar -cp . --scan-classpath -n BackendDeveloperTests
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mBackendDeveloperTests[0m [32m✔[0m
+[36m│     ├─[0m [34mtestLoad()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestFindFlight()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestAirportsInCity()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestDirectFlights()[0m [32m✔[0m
+[36m│     └─[0m [34mtestAirportsInState()[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 235 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
+
+]0;agupta276@vm1: ~/Project3_DQ_red[01;32magupta276@vm1[00m:[01;34m~/Project3_DQ_red[00m$ exit
+exit
+
+Script done on 2022-04-28 20:28:53+00:00 [COMMAND_EXIT_CODE="0"]
