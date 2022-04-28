@@ -1,4 +1,6 @@
- /**
+import java.util.ArrayList;
+
+/**
  * interface for loader for flight
  *
  *
@@ -7,17 +9,15 @@
  *
  */
 public interface IFlightLoader {
-
-        /**
-         *
-         * @return a list of Airports in data file
-         */
-        public ArrayList<IAirport[2]> loadConnections();//returns all airport connections
-        
-        /**
-         * 
-         * @return a list of distances corresponding to the pairs of airports above
-         */
-         public ArrayList<Integer> loadDistances();
+  /**
+   *
+   * @return a list of Airports in data file
+   */
+  public ArrayList<IAirport> loadConnections();//returns all airport connections
+  /**
+   *
+   * @return a list of distances corresponding to the pairs of airports above
+   */
+  public ArrayList<Integer> loadDistances();
 }
-~                            
+

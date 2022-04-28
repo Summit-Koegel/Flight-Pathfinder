@@ -48,14 +48,4 @@ public interface IFlightRouteBackend<T> {
    * a flight
    * */
   public void showMap ( );  
-  
-  /**
-   * Gives the total distance, total duration and total cost of a flight
-   * @param start, starting point as a string
-   * @param end, ending point as a string
-   * @return array of length 3 with the desired information
-   * */
-  public String[] getFlightInformation ( T start, T end);
-  
 }
-

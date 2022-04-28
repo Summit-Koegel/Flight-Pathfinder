@@ -26,5 +26,4 @@ public interface IAirport {
          * @return the city the airport is in
          */
         public String getCity();
-
-~                                                                                                                                                                           ~                                            
+}
