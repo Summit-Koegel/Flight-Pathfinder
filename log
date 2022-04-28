@@ -1,0 +1,63 @@
+Script started on 2022-04-28 00:36:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="112" LINES="33"]
+]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ git status
+On branch DataWrangler
+Your branch is ahead of 'origin/DataWrangler' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mlog[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ git log -a[K1
+[?1h=[33mcommit ba57914b7614d6e10c65b72d144577e49310383a[m[33m ([m[1;36mHEAD -> [m[1;32mDataWrangler[m[33m)[m[m
+Author: Charles Jungwirth <crjungwirth@wisc.edu>[m
+Date:   Thu Apr 28 00:35:11 2022 +0000[m
+[m
+    accidentally added a .class file, so I removed it[m
+[K[?1l>]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ make clean
+rm *.class
+rm: cannot remove '*.class': No such file or directory
+make: *** [Makefile:2: clean] Error 1
+]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ ls
+Airport.java            Flight.java        IAirport.java       Makefile        flights.json  log
+DataWranglerTests.java  FlightLoader.java  IFlightLoader.java  csvTojson.java  [0m[01;31mjunit5.jar[0m
+]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ make runTests
+javac IAirport.java
+javac Airport.java
+javac IFlightLoader.java
+javac Flight.java
+javac FlightLoader.java
+javac -cp .:junit5.jar DataWranglerTests.java -Xlint
+java -jar junit5.jar --class-path . --scan-classpath
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mDataWranglerTests[0m [32m✔[0m
+[36m│     ├─[0m [34mtestAirportHash()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestFirstCityState()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestFirstPaths()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestFirstDistances()[0m [32m✔[0m
+[36m│     └─[0m [34mtestLastFlight()[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 4202 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
+
+]0;crjungwirth@instance-1: ~/Project3_DQ_red[01;32mcrjungwirth@instance-1[00m:[01;34m~/Project3_DQ_red[00m$ exit
+exit
+
+Script done on 2022-04-28 00:37:11+00:00 [COMMAND_EXIT_CODE="0"]
