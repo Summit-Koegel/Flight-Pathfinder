@@ -1,3 +1,11 @@
+// --== CS400 File Header Information ==--
+// Name: Summit Koegel
+// Email: skoegel@wisc.edu
+// Team: DQ
+// TA: Ilay Raz
+// Lecturer: Florian Heimerl
+// Notes to Grader: <optional extra notes>
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -89,7 +97,7 @@ public interface GraphADT<T> {
      * @param end the data item in the destination vertex for the path
      * @return list of data item in vertices in order on the shortest path between vertex with data item startingVertex and vertex with data item destinationVertex, including both startingVertex and destinationVertex
      */
-    public List<T> shortestPath(T start, T end);
+    public List<String> shortestPath(T start, T end);
     
     /**
      * Returns the cost of the path (sum over edge weights) between startingVertex and destinationVertex.
