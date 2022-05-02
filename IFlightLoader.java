@@ -1,4 +1,10 @@
+<<<<<<< HEAD
  /**
+=======
+import java.util.ArrayList;
+
+/**
+>>>>>>> DataWrangler
  * interface for loader for flight
  *
  *
@@ -12,7 +18,7 @@ public interface IFlightLoader {
          *
          * @return a list of Airports in data file
          */
-        public ArrayList<IAirport[2]> loadConnections();//returns all airport connections
+        public ArrayList<IAirport[]> loadConnections();//returns all airport connections
         
         /**
          * 
@@ -20,4 +26,4 @@ public interface IFlightLoader {
          */
          public ArrayList<Integer> loadDistances();
 }
-~                            
+                         
