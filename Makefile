@@ -1,7 +1,9 @@
+runTests: runDataWranglerTests runBackendTests
+
 clean: 
 	rm *.class
 
-runTests: DataWranglerTests.class
+runDataWranglerTests: DataWranglerTests.class
 	java -jar junit5.jar --class-path . --scan-classpath
 
 DataWranglerTests.class: DataWranglerTests.java Airport.class FlightLoader.class Flight.class
@@ -21,3 +23,15 @@ IFlightLoader.class: IAirport.class IFlightLoader.java
 
 FlightLoader.class: FlightLoader.java IFlightLoader.class flights.json Flight.class Airport.class IAirport.class
 	javac FlightLoader.java
+clean:
+	rm *.class
+compileBackend: 
+	javac AirportPL.java
+	javac AirportAEPL.java
+	javac CS400Graph.java
+	javac FlightLoaderPL.java
+	javac FlightRouteBackend.java
+runBackendTests: compileBackend
+	javac -cp .:junit5.jar BackendDeveloperTests.java -Xlint
+	java -jar junit5.jar -cp . --scan-classpath -n BackendDeveloperTests
+

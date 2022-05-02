@@ -127,6 +127,4 @@ public interface GraphADT<T> {
      * @param source the data item contained in the source vertex for the edge
      * @return list of data item in vertices which direct to the source vertex
      */
-    public List<T> getDirectVertex(T source);
-
 }
