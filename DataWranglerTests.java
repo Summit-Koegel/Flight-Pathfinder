@@ -27,7 +27,7 @@ public class DataWranglerTests {
 		try {
 			FlightLoader loader = new FlightLoader();
 			int[] dists = new int[] {116,462,526,228,1387,813,1299,0,1253,230,1033
-					,230,230,1788,1212,879,1075,1350,502,1245};//distances of first 20
+					,1788,1212,879,1075,1350,502,1245,1301, 200};//distances of first 20 w/out duplicates
 			for(int i = 0; i<dists.length; i++) {
 				assertEquals(dists[i],loader.loadDistances().get(i));
 			}

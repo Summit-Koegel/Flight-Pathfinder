@@ -38,7 +38,7 @@ public class FlightLoader implements IFlightLoader {
 	private ArrayList<IAirport> allPortsList;//list of all airports
 	private ArrayList<Integer> dists;//distance of each flight, corresponds to connects
 	private ArrayList<IAirport[]> connects;//[origin,destination] of all loaded flights
-	
+	private Hashtable<String, Flight> uniqueFlights;
 	/**
 	 * Loads all airport flight paths in [origin, destination] form
 	 * 
@@ -98,6 +98,7 @@ public class FlightLoader implements IFlightLoader {
 		allPortsList = new ArrayList<IAirport>();
 		connects = new ArrayList<IAirport[]>();
 		dists = new ArrayList<Integer>();
+		uniqueFlights = new Hashtable<String, Flight>();
 		
 		while(scan.hasNext()) {
 			String temp = scan.next();
@@ -192,9 +193,13 @@ public class FlightLoader implements IFlightLoader {
 		//update fields
 		curFl.origin = exOrig;
 		curFl.destination = exDest;
-		allFlights.add(curFl);
-		connects.add(new IAirport[] {exOrig, exDest});
-		dists.add(curFl.distance);
+		if(!uniqueFlights.containsKey(exOrig.getAirportCode()+exDest.getAirportCode())) {
+			allFlights.add(curFl);
+			connects.add(new IAirport[] {exOrig, exDest});
+			dists.add(curFl.distance);
+			uniqueFlights.put(exOrig.getAirportCode()+exDest.getAirportCode(), curFl);
+		}
+		
 		
 		
 		return exOrig.getAirportCode()+":"+exDest.getAirportCode()+":"+curFl.distance;
