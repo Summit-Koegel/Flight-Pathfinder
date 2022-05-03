@@ -37,4 +37,9 @@ public interface IFlightRouteFrontend {
      * Prints the results after removing a connection between two airports
      */
     public void removeConnection();
+
+    /**
+     * Prints the results of the 3 shortest paths between two airports
+     */
+    public void threePathSearch();
 }

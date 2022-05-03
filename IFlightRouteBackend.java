@@ -47,5 +47,29 @@ public interface IFlightRouteBackend<T> {
    * Displays all the cities the user can fly out of and into. Makes it easier for the user to make
    * a flight
    * */
-  public void showMap ( );  
+  public void showMap ( );
+
+  /**
+   * Creates a connection between two airports
+   * @param start is the airport to start the connection from
+   * @param end is the airport to end the connection from
+   * @return true if the connection was made successfully, false otherwise
+   */
+   public boolean makeConnection(T start, T end);
+
+  /**
+   * Removes a connection between two airports
+   * @param start is the starting airport of the connection
+   * @param end is the ending airport of the connection
+   * @return true if the connection was removed successfully, false otherwise
+   */
+   public boolean removeConnection(T start, T end);
+
+   /**
+    * Gets the three shortest paths between two airports
+    * @param start is the airport to fly out of
+    * @param end is the airport to fly into
+    * @return a list contains all the paths
+    */
+   public List<List<IAirport>> threeShortestPaths(T start, T end);
 }
