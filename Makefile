@@ -1,4 +1,4 @@
-runTests: runDataWranglerTests runBackendTests
+runTests: runDataWranglerTests runBackendTests runFrontendTests
 
 clean: 
 	rm *.class
@@ -23,8 +23,6 @@ IFlightLoader.class: IAirport.class IFlightLoader.java
 
 FlightLoader.class: FlightLoader.java IFlightLoader.class flights.json Flight.class Airport.class IAirport.class
 	javac FlightLoader.java
-clean:
-	rm *.class
 compileBackend: 
 	javac AirportPL.java
 	javac AirportAEPL.java
@@ -34,4 +32,24 @@ compileBackend:
 runBackendTests: compileBackend
 	javac -cp .:junit5.jar BackendDeveloperTests.java -Xlint
 	java -jar junit5.jar -cp . --scan-classpath -n BackendDeveloperTests
+
+runFrontendTests: FrontendDeveloperTests.class
+	java -jar junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+
+FrontendDeveloperTests.class: FrontendDeveloperTests.java FlightRouteFrontend.class TextUITester.class
+	javac -cp .:junit5.jar FrontendDeveloperTests.java -Xlint
+
+TextUITester.class: TextUITester.java
+	javac TextUITester.java
+
+FlightRouteFrontend.class: FlightRouteFrontend.java AirportFD.class FlightRouteBackendFD.class
+	javac FlightRouteFrontend.java
+
+AirportFD.class: AirportFD.java IAirport.java
+	javac IAirport.java
+	javac AirportFD.java
+
+FlightRouteBackendFD.class: FlightRouteBackendFD.java IFlightRouteBackend.java
+	javac IFlightRouteBackend.java
+	javac FlightRouteBackendFD.java
 
