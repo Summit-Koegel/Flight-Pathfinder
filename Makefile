@@ -38,9 +38,14 @@ runBackendTests: compileBackend
 	java -jar junit5.jar -cp . --scan-classpath -n BackendDeveloperTests
 
 runFrontendTests: FrontendDeveloperTests.class
-	java -jar junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+		java -jar junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
 
-FrontendDeveloperTests.class: FrontendDeveloperTests.java FlightRouteFrontend.class TextUITester.class
+FrontendDeveloperTests.class: FrontendDeveloperTests.java FlightRouteFrontend.class TextUITester.class Airport.java FlightLoader.java Flight.java FlightRouteBackend.java IFlightLoader.java 
+	javac Airport.java
+	javac FlightLoader.java
+	javac Flight.java
+	javac FlightRouteBackend.java
+	javac IFlightLoader.java
 	javac -cp .:junit5.jar FrontendDeveloperTests.java -Xlint
 
 TextUITester.class: TextUITester.java

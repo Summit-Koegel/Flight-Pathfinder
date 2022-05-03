@@ -99,4 +99,77 @@ public class FrontendDeveloperTests {
         assert(r.contains("CONNECTION REMOVED FROM MKE TO ORD"));
     }
 
+    /**
+     * Tests the output when searching for a flight using correct backend
+     */
+    @Test
+    public void testFlightSearchIntegrated() {
+	f = new FlightRouteFrontend(new FlightRouteBackend<IAirport>());
+        // test input with valid flight path
+        t = new TextUITester("ORD"+System.getProperty("line.separator")+
+                "MKE"+System.getProperty("line.separator"));
+        f.shortestPathSearch();
+        String r = t.checkOutput();
+        assert(r.contains("FLIGHT FOUND:"));
+        assert(r.contains("MKE--->ORD"));
+        // test input with no flight path
+        t = new TextUITester("ZZZ"+System.getProperty("line.separator")+
+                "XXX"+System.getProperty("line.separator"));
+        f.shortestPathSearch();
+        r = t.checkOutput();
+        assert(r.contains("NO FLIGHT FOUND"));
+     }
+
+    /**
+     * Test the output for making a connection using correct backend
+     */
+    @Test
+    public void testAddConnectionIntegrated() {
+	f = new FlightRouteFrontend(new FlightRouteBackend<IAirport>());
+        // test making a connection (valid)
+        t = new TextUITester("PEK"+System.getProperty("line.separator")+
+                "MKE"+System.getProperty("line.separator"));
+        f.addConnection();
+        String r = t.checkOutput();
+        assert(r.contains("NEW CONNECTION MADE FROM MKE TO ORD"));
+        // test making a connection (invalid)
+        t = new TextUITester("ZZZ"+System.getProperty("line.separator")+
+                "XXX"+System.getProperty("line.separator"));
+        f.addConnection();
+        r = t.checkOutput();
+        assert(r.contains("CONNECTION REMOVAL FAILED"));
+    }
+    
+    /**
+     * Test Data Wrangler's Airport implementation
+     */
+    @Test
+    public void testAirport() {
+	    Airport test = new Airport("MKE", "Milwaukee", "WI");
+	    assert(test.getAirportCode().equals("MKE"));
+	    assert(test.getCity().equals("Milwaukee"));
+	    assert(test.getState().equals("NAN"));
+
+	    test = new Airport();
+	    String d = "NAN";
+	    assert(test.getAirportCode().equals(d));
+	    assert(test.getCity().equals(d));
+	    assert(test.getState().equals(d));
+    }
+
+    /**
+     * Test Data Wrangler's Loader implementation
+     */
+    @Test
+    public void testLoader() {
+	    try {
+	    	FlightLoader fl = new FlightLoader();
+	    } catch (Exception e) {assert(false);}
+
+	    assert(fl.loadConnections().size() > 0);
+	    assert(fl.loadDistances().size() > 0);
+	    assert(fl.allAirportsList().size > 0);
+	    assert(fl.allAirportsHash().getOrDefault("MKE", null) != null);
+	    assert(fl.allAirportsList().toString().contains("MKE"));
+    }
 }
