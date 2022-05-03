@@ -7,11 +7,12 @@
 // Notes to Grader: Allows multiple options for loading flights, flight objects optional
 //	Data file generated from csvTojson.java
 //	initial csv file is very big so I didn't put it on google machine
-// also are some duplicate paths on csv
+// also are some duplicate paths on json, but tests account for them being filtered out
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileNotFoundException;
+import java.util.Hashtable;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -107,6 +108,59 @@ public class DataWranglerTests {
 			fail("unexpected exception");
 		}
 	}
+	
+	
+	/**
+	 * additional DW test1, tests to see if any duplicate flights connections exist,
+	 * in correct order using loadConnections method
+	 */
+	@Test
+	public void testDuplicatesConnections() {
+		try {
+			FlightLoader test= new FlightLoader();
+			Hashtable<String, IAirport[]> prevF = new Hashtable<String, IAirport[]>();
+			for(IAirport[] con:test.loadConnections()) {
+				String newKey = con[0].getAirportCode()+con[1].getAirportCode();
+				assertFalse(prevF.containsKey(newKey));
+				prevF.put(newKey, con);
+			}
+		} catch (Exception e) {
+			fail("unexpected Exception");
+		}
+		
+		
+		
+	}
+	
+	
+	/**
+	 * tests to see if all airports in the connections are represented for
+	 * in allAirportsList
+	 * DW Additonal test 2
+	 */
+	@Test
+	public void testSameResults() {
+		try {
+			FlightLoader test= new FlightLoader();
+			Hashtable<String, IAirport> airHash = new Hashtable<String, IAirport>();
+			for(IAirport air: test.allAirportsList()) {
+				airHash.put(air.getAirportCode(), air);
+			}
+			for(IAirport[] con: test.loadConnections()) {
+				assertTrue(airHash.containsKey(con[0].getAirportCode()));
+				assertTrue(airHash.containsKey(con[1].getAirportCode()));
+			}
+			
+		}catch(Exception e){
+			fail("unexpected Exception");
+		}
+		
+	}
+	
+	
+	//now I am going to write testers for Corey's Frontend
+	
+	
 	
 		
 
