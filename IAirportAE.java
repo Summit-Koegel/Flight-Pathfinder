@@ -1,3 +1,11 @@
+// --== CS400 File Header Information ==--
+// Name: Summit Koegel
+// Email: skoegel@wisc.edu
+// Team: DQ
+// TA: Ilay Raz
+// Lecturer: Florian Heimerl
+// Notes to Grader: <optional extra notes>
+
 import java.util.List;
 
 /**
@@ -5,51 +13,34 @@ import java.util.List;
  * @author chenyuntzu
  *
  */
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * interface for AirportAE
- * @author chenyuntzu
- *
- */
-public interface IAirportAE extends GraphADT<String>{
-
+public interface IAirportAE extends GraphADT<IAirport>{
+  
   /**
    * user give a source airport, then list all the vertex direct to the source vertex
    * @param source the data item contained in the source vertex for the edge
    * @return list of data item in vertices which direct to the source vertex
    */
-  public List<String> getDirectVertex(String airport);
-
-  /**
-   * user give a source airport and destination airport, then list last three shortest path
-   * @param source the airport you start
-   * @param destination the airport you want to arrive
-   * @return array of Linkedlist for last three shortest path from source to destination
-   */
-  public ArrayList<String[]> getLastThreeShortestPath(String source, String destination);
-
+  public List<IAirport> getDirectVertex(String airport);
+  
   /**
    * give user the duration about this flight
    * @param distance the distance about this flight
    * @return the duration of flight
    */
-  public double getduration(double distance);
-
+  public double getDuration(double distance);
+  
   /**
    * give the user the cost of this flight
    * @param hour the duration about this transport
    * @return the cost of flight
    */
-  public double getcost(double hour);
-
+  public double getCost(double hour);
+  
   /**
-   * display all the city can connect to which city let user can easy to check
+   * display all the city can connect to which ciyt let user can easy to check
    */
   public void printMap();
-
-
+  
+  
 
 }
-

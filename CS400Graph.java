@@ -1,10 +1,11 @@
 // --== CS400 File Header Information ==--
-// Name: Aaryush Gupta
-// Email: agupta276@wisc.edu
+// Name: Summit Koegel
+// Email: skoegel@wisc.edu
 // Team: DQ
-// TA: Ilay
-// Lecturer: Florian
+// TA: Ilay Raz
+// Lecturer: Florian Heimerl
 // Notes to Grader: <optional extra notes>
+
 import java.util.*;
 
 public class CS400Graph<T> implements GraphADT<T> {
@@ -224,7 +225,7 @@ public class CS400Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Path objects store a discovered path of vertices and the overall distance of cost
+     * Path objects store a discovered path of vertices and the overal distance of cost
      * of the weighted directed edges along this path. Path objects can be copied and extended
      * to include new edges and verticies using the extend constructor. In comparison to a
      * predecessor table which is sometimes used to implement Dijkstra's algorithm, this
@@ -259,12 +260,9 @@ public class CS400Graph<T> implements GraphADT<T> {
          */
         public Path(Path copyPath, Edge extendBy) {
             this.start = copyPath.start;
-            this.dataSequence = new LinkedList<T>();
-            this.distance = copyPath.distance + extendBy.weight;
-            for (T data: copyPath.dataSequence){
-                this.dataSequence.add(data);
-            }
+            this.dataSequence = new LinkedList<>(copyPath.dataSequence); // Creates a deep copy
             this.dataSequence.add(extendBy.target.data);
+            this.distance = copyPath.distance + extendBy.weight;
             this.end = extendBy.target;
         }
 
@@ -297,20 +295,44 @@ public class CS400Graph<T> implements GraphADT<T> {
      *     including when no vertex containing start or end can be found
      */
     protected Path dijkstrasShortestPath(T start, T end) {
-        if (start == null || end == null || vertices.get(start) == null || vertices.get(end) == null)
-            throw new NoSuchElementException("No vertex containing start or end found");
-        PriorityQueue<Path> pq = new PriorityQueue<Path>();
-        pq.add(new Path(vertices.get(start)));
-        while (!pq.isEmpty()){
-            Path temp = pq.remove();
-            if (temp.end.data == end)
-                return temp;
-            for (Edge e: temp.end.edgesLeaving){
-                if (!temp.dataSequence.contains(e))
-                    pq.add(new Path(temp, e));
+        Vertex startVertex = vertices.get(start);
+        Vertex endVertex = vertices.get(end);
+
+        // Start or end vertex does not exist in graph
+        if (startVertex == null || endVertex == null) {
+            throw new NoSuchElementException("Start or end is not in the graph!");
+        }
+
+        // Keep track of visited vertices
+        Set<Vertex> visited = new HashSet<>();
+        Path startingPath = new Path(startVertex);
+        PriorityQueue<Path> paths = new PriorityQueue<>();
+        paths.add(startingPath);
+
+        // Loop until a path to the target is found, or all paths have been searched
+        while (paths.size() > 0 && paths.peek().end != endVertex) {
+            // Remove the shortest current path
+            Path currentPath = paths.poll();
+
+            // Mark the end of the path as visited
+            visited.add(currentPath.end);
+
+            for (Edge edge : currentPath.end.edgesLeaving) {
+                // Skip edges to already visited vertices
+                if (visited.contains(edge.target)) continue;
+
+                // Add all paths that extend the current shortest path by one edge
+                paths.add(new Path(currentPath, edge));
             }
         }
-        throw new NoSuchElementException("No path found"); // TODO: Implement this method in Step 7.
+
+        // If no paths are in the queue, or the shortest path does not end at target, no valid path was found
+        if (paths.size() == 0 || paths.peek().start != startVertex || paths.peek().end != endVertex) {
+            throw new NoSuchElementException("No path from start to end found!");
+        }
+
+        // Return the shortest path in the queue, which goes from start to end
+        return paths.poll();
     }
     
     /**
@@ -324,8 +346,8 @@ public class CS400Graph<T> implements GraphADT<T> {
      * @throws NoSuchElementException when no path from start to end can be found
      *     including when no vertex containing start or end can be found
      */
-    public List<T> shortestPath(T start, T end) {
-        return dijkstrasShortestPath(start,end).dataSequence;
+    public List<String> shortestPath(T start, T end) {
+        return (List<String>) dijkstrasShortestPath(start,end).dataSequence;
     }
     
     /**
@@ -341,7 +363,12 @@ public class CS400Graph<T> implements GraphADT<T> {
      */
     public int getPathCost(T start, T end) {
         return dijkstrasShortestPath(start, end).distance;
+    }
+
+    @Override
+    public List<T> getDirectVertex(T source) {
+        // TODO Auto-generated method stub
+        return null;
     }	
     
 }
-
