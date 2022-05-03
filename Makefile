@@ -1,4 +1,4 @@
-runTests: runDataWranglerTests runBackendTests runFrontendTests runAlgorithmEngineerTests
+runTests: runDataWranglerTests runFrontendTests runAlgorithmEngineerTests runBackendTests
 
 clean: 
 	rm *.class

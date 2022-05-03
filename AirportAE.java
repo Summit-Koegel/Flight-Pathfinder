@@ -596,17 +596,30 @@ public class AirportAE implements IAirportAE {
    * @param destination the airport you want to arrive
    * @return array of Linkedlist for last three shortest path from source to destination
    */
-    public List<Path> ShortestThreePaths(IAirport start, IAirport end) {
+    public List<List<IAirport>> ShortestThreePaths(IAirport start, IAirport end) {
         
         List<Path> all = new ArrayList<Path>();
         all = ShortestThreePathsHelper(start, end);
 
         Collections.sort(all);
-        List<Path> finalPath = new ArrayList<Path>();
+        List<List<IAirport>> finalPath = new ArrayList<List<IAirport>>();
         int counter = 0;
 
+        for(int i = 0; i < 3; i++) {
+            List<IAirport> l = new ArrayList<IAirport>();
+            for(String s : all.get(i).dataSequence) {
+                IAirport ap = new Airport(s, "", "");
+                l.add(ap);
+            }
+            finalPath.add(l);
+        }
+
+        return finalPath;
+
+
+        /*
         for (int i = 0; i < all.size(); i++) {
-            finalPath.add(all.get(i));
+            finalPath.add(all.get(i).dataSequence);
             counter += 1;
             if (counter == 3) {
                 break;
@@ -614,6 +627,7 @@ public class AirportAE implements IAirportAE {
         }
 
         return finalPath;
+        */
     }
 
 @Override
