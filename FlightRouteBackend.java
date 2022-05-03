@@ -32,6 +32,12 @@ public class FlightRouteBackend<T> implements IFlightRouteBackend {
    * Loads data set from data wrangler
    **/
   @Override public void loadFlights() {
+	//TODO: actual flight loder works a little bit differently
+	// all airports can be found in allAirportsList
+	// not in the individual airports
+	// load connections is actually an ArrayList<IAirport[]> {origin, destinations}
+	// the connections are at the same indicies as the distances
+	// there are other options to use as well in the interface
     airports = loader.loadConnections();
     distances = loader.loadDistances();
   }
