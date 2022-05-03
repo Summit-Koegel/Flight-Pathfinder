@@ -134,7 +134,7 @@ public class FlightRouteFrontend implements IFlightRouteFrontend{
         // sends data to backend and displays whether the result was a success
         IAirport destA = new AirportFD(dest, "", "");
         IAirport srcA = new AirportFD(src, "", "");
-        if(((FlightRouteBackendFD)backend).makeConnection(srcA, destA))
+        if(backend.makeConnection(srcA, destA))
             System.out.println("NEW CONNECTION MADE FROM " + src + " TO " + dest);
         else
             System.out.println("CONNECTION FAILED");
@@ -155,9 +155,41 @@ public class FlightRouteFrontend implements IFlightRouteFrontend{
         // sends data to backend and displays whether the result was a success
         IAirport destA = new AirportFD(dest, "", "");
         IAirport srcA = new AirportFD(src, "", "");
-        if(((FlightRouteBackendFD)backend).removeConnection(srcA, destA))
+        if(backend.removeConnection(srcA, destA))
             System.out.println("CONNECTION REMOVED FROM " + src + " TO " + dest);
         else
             System.out.println("CONNECTION REMOVAL FAILED");
+    
     }
+
+    /**
+     * Gets input from the user and displays the result of the
+     * 3 shortest paths between the desired airports
+     */
+    @Override
+    public void threePathSearch() {
+        sc = new Scanner(System.in);
+        // gets desired airports
+        System.out.println("PLEASE TYPE 3 LETTER CODE OF DESTINATION AIRPORT:");
+        String dest = sc.nextLine();
+        System.out.println("PLEASE TYPE 3 LETTER CODE OF SOURCE AIRPORT:");
+        String src = sc.nextLine();
+        // sends data to the backend and stores the result
+        IAirport destA = new AirportFD(dest, "", "");
+        IAirport srcA = new AirportFD(src, "", "");
+        List<List<IAirport>> paths = backend.threeShortestPaths(srcA, destA);
+        // display results
+        if (paths.size() != 0) {
+            System.out.println("FLIGHTS FOUND:");
+        } else {
+            System.out.println("NO FLIGHTS FOUND");
+        }
+        for(List<IAirport> l : paths) {
+            for(IAirport ap : l) {
+		System.out.print(ap.getAirportCode() + (ap.getAirportCode().equals(dest)?"":"--->"));
+	    }
+	    System.out.println();
+        }
+    }
+
 }
