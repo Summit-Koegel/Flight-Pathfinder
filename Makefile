@@ -1,5 +1,9 @@
 runTests: runDataWranglerTests runBackendTests runFrontendTests runAlgorithmEngineerTests
 
+run: DataWranglerTests.class FrontendDeveloperTests.class compileBackend compileTests
+	javac App.java
+	java App
+
 clean: 
 	rm *.class
 
@@ -53,7 +57,7 @@ FlightRouteBackendFD.class: FlightRouteBackendFD.java IFlightRouteBackend.java
 	javac IFlightRouteBackend.java
 	javac FlightRouteBackendFD.java
 
-runTests: compileTests 
+runAlgorithmEngineerTests: compileTests 
 	java -jar junit5.jar -cp . --scan-classpath -n AlgorithmEngineerTests
 
 compileTests: AlgorithmEngineerTests.java
