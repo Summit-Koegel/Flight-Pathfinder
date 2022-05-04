@@ -10,8 +10,14 @@ clean:
 runDataWranglerTests: DataWranglerTests.class
 	java -jar junit5.jar --class-path . --scan-classpath
 
-DataWranglerTests.class: DataWranglerTests.java Airport.class FlightLoader.class Flight.class
+DataWranglerTests.class: DataWranglerTests.java Airport.class FlightLoader.class Flight.class FlightRouteBackendDW.class FlightRouteFrontend.class
 	javac -cp .:junit5.jar DataWranglerTests.java -Xlint
+
+FlightRouteBackendDW.class: FlightRouteBackendDW.java IFlightRouteBackend.class
+	javac FlightRouteBackendDW.java
+
+IFlightRouteBackend.class: IFlightRouteBackend.java
+	javac IFlightRouteBackend.java
 
 Airport.class: Airport.java IAirport.class
 	javac Airport.java
