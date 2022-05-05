@@ -1,4 +1,4 @@
-runTests: runDataWranglerTests runFrontendTests runAlgorithmEngineerTests runBackendTests
+runTests: runAlgorithmEngineerTests runDataWranglerTests runFrontendTests runBackendTests
 
 run: DataWranglerTests.class FrontendDeveloperTests.class compileBackend compileTests
 	javac App.java

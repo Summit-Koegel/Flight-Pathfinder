@@ -34,7 +34,7 @@ public class AirportPH implements IAirport{
     }
 
     public String toString(){
-        return ("Airport: " + getAirportCode() + ", State: " + getState() + ", City: " + getCity());
+        return (getAirportCode());
     }
     
 }

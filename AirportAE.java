@@ -603,15 +603,18 @@ public class AirportAE implements IAirportAE {
 
         Collections.sort(all);
         List<List<IAirport>> finalPath = new ArrayList<List<IAirport>>();
-        int counter = 0;
+        //int counter = 0;
+
+        List<IAirport> l = new ArrayList<IAirport>();
 
         for(int i = 0; i < 3; i++) {
-            List<IAirport> l = new ArrayList<IAirport>();
             for(String s : all.get(i).dataSequence) {
-                IAirport ap = new Airport(s, "", "");
+                //System.out.println(all.get(i).dataSequence);
+                IAirport ap = new AirportPH(s, "", "");
                 l.add(ap);
             }
             finalPath.add(l);
+            //System.out.println(finalPath);
         }
 
         return finalPath;
