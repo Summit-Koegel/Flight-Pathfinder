@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.FileNotFoundException;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
@@ -161,6 +163,61 @@ public class DataWranglerTests {
 	//now I am going to write testers for Corey's Frontend
 	
 	
+	/**
+	 * test to see if 5 lines in print command menu start with []
+	 */
+	@Test
+	public void testFrontBracket() {
+		try {
+			
+			FlightRouteBackendDW<IAirport> back = new FlightRouteBackendDW<IAirport>();
+			FlightRouteFrontend test = new FlightRouteFrontend(back);
+			TextUITester UItest = new TextUITester("");
+			test.printCommandMenu();
+			String out = UItest.checkOutput();
+			Matcher match = Pattern.compile("^"+(char)92+"[.*",Pattern.MULTILINE).matcher(out);
+			for(int i = 0; i< 5; i++) {
+				assertTrue(match.find());
+			}
+				assertFalse(match.find());
+			
+			
+			
+		}catch(Exception e){
+			fail("unexpected exception");
+		}
+	}
+	
+	/**
+	 * test to see if add connection reprints names of airports, and in right order
+	 * And tests to see if fails test successfully
+	 */
+	@Test
+	public void testAddConnection() {
+		try {
+			
+			// Test to see if adding two flights shows them in right order
+			FlightRouteBackendDW<IAirport> back = new FlightRouteBackendDW<IAirport>();
+			FlightRouteFrontend test = new FlightRouteFrontend(back);
+			TextUITester UItest = new TextUITester("CSF\nOUR\n");
+			test.addConnection();
+			String output = UItest.checkOutput();
+			Matcher match = Pattern.compile(".*OUR.*CSF",Pattern.MULTILINE).matcher(output);
+			assertTrue(match.find());
+			
+			//Check to see if failed add gets fail message
+			//if start plane has FAL as start, backend will say it failed
+			TextUITester failTest = new TextUITester("BAD\nFAL\n");
+			test.addConnection();
+			output = failTest.checkOutput();	
+			match = Pattern.compile("FAIL",Pattern.MULTILINE).matcher(output);
+			assertTrue(match.find());
+			
+					
+		}catch(Exception e){
+			fail("unexpected exception");
+		}
+	}
 	
 		
 
