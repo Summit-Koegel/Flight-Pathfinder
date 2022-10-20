@@ -1,11 +1,3 @@
-// --== CS400 File Header Information ==--
-// Name: Summit Koegel
-// Email: skoegel@wisc.edu
-// Team: DQ
-// TA: Ilay Raz
-// Lecturer: Florian Heimerl
-// Notes to Grader: <optional extra notes>
-
 /**
  * interface for the Airport class
  *
