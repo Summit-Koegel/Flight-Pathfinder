@@ -1,10 +1,3 @@
-// --== CS400 Project 4 File Header ==--
-// Name: Aaryush Gupta
-// CSL Username: aaryush
-// Email: agupta276@wisc.edu
-// Lecture #: 004
-// Notes to Grader: <Notes>
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
