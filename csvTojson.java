@@ -1,13 +1,3 @@
-// --== CS400 File Header Information ==--
-// Name: Charles Jungwirth
-// Email: crjungwirth@wisc.edu
-// Team: DQ
-// TA: Ilay Raz
-// Lecturer: Florian Heimerl
-// Notes to Grader: Allows multiple options for loading flights, flight objects optional
-//	Data file generated from csvTojson.java
-//	initial csv file is very big so I didn't put it on google machine
-// also are some duplicate paths on csv
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
