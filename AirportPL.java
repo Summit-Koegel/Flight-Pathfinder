@@ -1,11 +1,3 @@
-// --== CS400 Project [NUMBER] File Header ==--
-// Name: Aaryush Gupta
-// CSL Username: aaryush
-// Email: agupta276@wisc.edu
-// Lecture #: 004
-// Notes to Grader: <Notes>
-
-
 public class AirportPL implements IAirport {
   String code;
   String state;
