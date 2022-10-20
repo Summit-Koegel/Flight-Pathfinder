@@ -1,11 +1,3 @@
-// --== CS400 Project 4 File Header ==--
-// Name: Aaryush Gupta
-// CSL Username: aaryush
-// Email: agupta276@wisc.edu
-// Lecture #: 004
-// Notes to Grader: <Notes>
-
-
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
